@@ -1,7 +1,13 @@
 # RAG-Based Document Assistant
 
-A full-stack AI-powered document assistant that lets you upload PDFs and ask questions about their content using Retrieval-Augmented Generation (RAG).
+![React](https://img.shields.io/badge/Frontend-React-blue)
+![FastAPI](https://img.shields.io/badge/Backend-FastAPI-green)
+![RAG](https://img.shields.io/badge/AI-RAG-orange)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 
+An AI-powered document assistant that lets you upload PDFs and ask context-aware questions using Retrieval-Augmented Generation (RAG).
+
+🔍 Built with a full-stack architecture combining FastAPI, React, and vector search (FAISS) for accurate, grounded answers.
 ## Tech Stack
 
 ### Frontend
@@ -18,40 +24,32 @@ A full-stack AI-powered document assistant that lets you upload PDFs and ask que
 - Sentence Transformers (embeddings)
 - SQLAlchemy + SQLite (chat history)
 
+## Features
+
+- PDF upload with drag-and-drop
+- Real-time chat with word-by-word streaming animation
+- Chat session management with sidebar history
+- Chat history persisted in SQLite (backend) and localStorage (frontend)
+- Markdown rendering in AI responses
+- Source snippet references
+- Export chat as text file
+
+
 ## Project Structure
 
 ```
-├── frontend/
-│   ├── src/
-│   │   ├── components/      # UI components (Sidebar, ChatWindow, InputBar, etc.)
-│   │   ├── pages/           # Route pages (Index, NotFound)
-│   │   ├── services/        # API client (Axios)
-│   │   ├── hooks/           # Custom React hooks
-│   │   ├── types/           # TypeScript interfaces
-│   │   └── lib/             # Utility functions
-│   ├── tailwind.config.ts
-│   ├── vite.config.ts
-│   └── package.json
-│
-├── backend/
-│   ├── services/
-│   │   ├── rag.py           # RAG pipeline (process PDF + query)
-│   │   ├── loader.py        # PDF text extraction
-│   │   ├── chunker.py       # Text chunking
-│   │   ├── embedder.py      # Embedding generation
-│   │   └── vectorstore.py   # FAISS index management
-│   ├── routes/
-│   │   ├── upload.py        # POST /upload
-│   │   └── query.py         # POST /query
-│   ├── main.py              # FastAPI app + CORS + GET /history
-│   ├── database.py          # SQLAlchemy engine + session
-│   ├── models.py            # ChatMessage ORM model
-│   ├── schemas.py           # Pydantic request/response schemas
-│   ├── crud.py              # DB operations
-│   ├── config.py            # Environment config
-│   └── requirements.txt
-│
-└── .gitignore
+## 📁 Project Structure
+frontend/
+└── src/
+├── components/ # UI (Chat, Sidebar, etc.)
+├── pages/
+└── services/ # API calls
+
+backend/
+├── routes/ # API endpoints
+├── services/ # RAG pipeline
+├── models/ # DB models
+└── main.py # FastAPI entry
 ```
 
 ## API Endpoints
@@ -82,6 +80,33 @@ It offers a free tier and can be easily swapped with other providers like OpenAI
 
 The embedding model runs entirely locally using `sentence-transformers`.  
 It converts text into vectors for FAISS search, with no API key required after initial download.
+
+
+<h2 align="center">🖼️ Application Preview</h2>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9d7421cc-4b02-4da1-a6e1-3e6d99ebcede" width="900"/>
+  <br/>
+  <em>📄 Upload Document Interface</em>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/de9fbb9f-20d0-4241-b0fb-8223d71c812f" width="900"/>
+  <br/>
+  <em>💬 Chat Interface with AI Responses</em>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f3d113f1-84bd-4a7c-96ba-308e3bcd099b" width="900"/>
+  <br/>
+  <em>⚡ RAG-powered Answer Generation</em>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a851180b-87bc-48f3-a247-2686f2301945" width="900"/>
+  <br/>
+  <em>📚 Chat History Sidebar</em>
+</p>
 
 ## Setup
 
@@ -121,43 +146,3 @@ cd frontend
 npm install
 npm run dev
 ```
-
-Frontend runs at `http://localhost:8080`.
-
-<h2 align="center">🖼️ Application Preview</h2>
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/9d7421cc-4b02-4da1-a6e1-3e6d99ebcede" width="900"/>
-  <br/>
-  <em>📄 Upload Document Interface</em>
-</p>
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/de9fbb9f-20d0-4241-b0fb-8223d71c812f" width="900"/>
-  <br/>
-  <em>💬 Chat Interface with AI Responses</em>
-</p>
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/a851180b-87bc-48f3-a247-2686f2301945" width="900"/>
-  <br/>
-  <em>⚡ RAG-powered Answer Generation</em>
-</p>
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/f3d113f1-84bd-4a7c-96ba-308e3bcd099b" width="900"/>
-  <br/>
-  <em>📚 Chat History Sidebar</em>
-</p>
-
-
-## Features
-
-- PDF upload with drag-and-drop
-- Real-time chat with word-by-word streaming animation
-- Chat session management with sidebar history
-- Chat history persisted in SQLite (backend) and localStorage (frontend)
-- Markdown rendering in AI responses
-- Source snippet references
-- Export chat as text file
-- Dark theme UI
