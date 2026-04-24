@@ -74,11 +74,14 @@ A full-stack AI-powered document assistant that lets you upload PDFs and ask que
 
 ## Why Groq API Key?
 
-Steps 1–5 of the pipeline (load, chunk, embed, store, retrieve) all run **locally** — no API key needed. The API key is only required for **step 6 (answer generation)**, which uses Groq's hosted **Llama 3.1 8B** model to generate natural-language answers from the retrieved document chunks. Groq provides free-tier access with fast inference, so the app works without expensive GPU hardware. The LLM is swappable — you can replace `ChatGroq` with `ChatOpenAI` or any other LangChain-compatible provider by editing `services/rag.py`.
+All RAG steps (load, chunk, embed, store, retrieve) run locally.  
+The API key is only needed for **answer generation**, using Groq’s fast Llama 3.1 model.  
+It offers a free tier and can be easily swapped with other providers like OpenAI.
 
 ## Why Hugging Face?
 
-The embedding model `sentence-transformers/all-MiniLM-L6-v2` is downloaded from Hugging Face and runs **entirely locally** using the `sentence-transformers` library. It converts text chunks into 384-dimensional vectors that FAISS uses for similarity search. No Hugging Face API key is needed — the model is downloaded once and cached on your machine.
+The embedding model runs entirely locally using `sentence-transformers`.  
+It converts text into vectors for FAISS search, with no API key required after initial download.
 
 ## Setup
 
@@ -120,6 +123,33 @@ npm run dev
 ```
 
 Frontend runs at `http://localhost:8080`.
+
+<h2 align="center">🖼️ Application Preview</h2>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/9d7421cc-4b02-4da1-a6e1-3e6d99ebcede" width="900"/>
+  <br/>
+  <em>📄 Upload Document Interface</em>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/de9fbb9f-20d0-4241-b0fb-8223d71c812f" width="900"/>
+  <br/>
+  <em>💬 Chat Interface with AI Responses</em>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a851180b-87bc-48f3-a247-2686f2301945" width="900"/>
+  <br/>
+  <em>⚡ RAG-powered Answer Generation</em>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f3d113f1-84bd-4a7c-96ba-308e3bcd099b" width="900"/>
+  <br/>
+  <em>📚 Chat History Sidebar</em>
+</p>
+
 
 ## Features
 
