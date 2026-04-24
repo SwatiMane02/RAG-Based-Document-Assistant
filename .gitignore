@@ -1,0 +1,32 @@
+# ── Environment variables ────────────────────────────
+.env
+.env.*
+
+# ── Python / Backend ─────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+*.sqlite3
+*.db
+
+# ── Node / Frontend ──────────────────────────────────
+node_modules/
+dist/
+build/
+.vite/
+bun.lockb
+
+# ── OS files ─────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Logs ─────────────────────────────────────────────
+*.log
+
+# ── IDE / Editor ─────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
