@@ -31,7 +31,6 @@ An AI-powered document assistant that lets you upload PDFs and ask context-aware
 - Chat session management with sidebar history
 - Chat history persisted in SQLite (backend) and localStorage (frontend)
 - Markdown rendering in AI responses
-- Source snippet references
 - Export chat as text file
 
 
