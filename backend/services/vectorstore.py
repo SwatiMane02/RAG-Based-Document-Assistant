@@ -1,25 +1,36 @@
-from langchain_community.vectorstores import FAISS
+from langchain_pinecone import PineconeVectorStore
 from services.embedder import get_embeddings
-from config import DB_DIR
-import os
+from pinecone import Pinecone
+from config import PINECONE_API_KEY, PINECONE_INDEX_NAME
 
+# Initialize Pinecone
+pc = Pinecone(api_key=PINECONE_API_KEY)
+
+# Create and store vectors in Pinecone
 def create_and_save_index(chunks):
-    """Creates a FAISS index from text chunks and saves it locally."""
+    """Creates embeddings from chunks and stores them in Pinecone."""
     embedder = get_embeddings()
-    vector_store = FAISS.from_documents(chunks, embedder)
-    
-    # Save the index to the db directory
-    index_path = os.path.join(DB_DIR, "faiss_index")
-    vector_store.save_local(index_path)
+
+    PineconeVectorStore.from_documents(
+        documents=chunks,
+        embedding=embedder,
+        index_name=PINECONE_INDEX_NAME
+    )
+
     return True
 
+
+# Load vector store from Pinecone
 def load_index():
-    """Loads the FAISS index from the local directory."""
+    """Loads the Pinecone vector store."""
     embedder = get_embeddings()
-    index_path = os.path.join(DB_DIR, "faiss_index")
-    
-    if not os.path.exists(index_path):
+
+    try:
+        vector_store = PineconeVectorStore(
+            index_name=PINECONE_INDEX_NAME,
+            embedding=embedder
+        )
+        return vector_store
+    except Exception as e:
+        print("Error loading Pinecone index:", e)
         return None
-        
-    vector_store = FAISS.load_local(index_path, embedder, allow_dangerous_deserialization=True)
-    return vector_store
