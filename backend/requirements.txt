@@ -3,8 +3,9 @@ uvicorn
 langchain
 langchain-groq
 langchain-community
+langchain-pinecone
+pinecone-client
 sentence-transformers
-faiss-cpu
 pypdf
 python-multipart
 sqlalchemy
